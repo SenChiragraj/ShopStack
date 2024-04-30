@@ -39,6 +39,10 @@ export default function UserGateway(app) {
   app.get('/api/curr', isAuthenticated, async (req, res) => {
     return res.json({ user: req.user });
   });
+
+  app.get('/', async (req, res) => {
+    return res.json({ message: 'User is running ' });
+  });
 }
 
 // route.get('/all', getAll);
