@@ -18,7 +18,7 @@ export default function ProductGateway(app) {
     }
   });
 
-  app.get('/api/all', async (req, res, next) => {
+  app.get('/api/all',isAuthenticated, async (req, res, next) => {
     try {
       const data = await service.getAll();
       return res.json(data);

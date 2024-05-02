@@ -10,6 +10,7 @@ export default function CartGateway(app) {
 
   app.get('/api/all', isAuthenticated, async (req, res, next) => {
     try {
+      console.log(req.user._id);
       const data = await service.getAll(req.user._id);
       return res.json(data);
     } catch (error) {

@@ -1,7 +1,7 @@
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink, useLocation, Navigate, useNavigate } from "react-router-dom";
-import { TokenState } from "../context/token/Token";
+import TokenContext from "../context/token/Token";
 const Login = () => {
   const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState('');
@@ -9,7 +9,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { setUser, token, setToken } = TokenState();
+  const { setUser, token, setToken } = useContext(TokenContext);
 
   const loginHandler = async (e) => {
     e.preventDefault();

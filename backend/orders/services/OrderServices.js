@@ -13,7 +13,6 @@ export default class OrderService {
     try {
       // Find orders for the given customerId with pagination options
       const orders = await this.repository.getAllOrder({ customerId: userId });
-      console.log(orders);
       return orders;
     } catch (error) {
       console.error('Error fetching orders:', error);

@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use("/order", proxy("http://127.0.0.1:8003")); // orders, carts
 app.use("/product", proxy("http://127.0.0.1:8002")); // products
-app.use("/user", proxy("http://127.0.0.1:8001")); // auth, user info
+app.use("/", proxy("http://127.0.0.1:8001")); // auth, user info
 
 app.get('/', (req, res) => {
   return res.status(201).json({message : 'Site is healthy👍'})

@@ -5,18 +5,18 @@ const isAuthenticated = async (req, res, next) => {
   try {
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
       token = req.headers.authorization.split(' ')[1];
-
+      console.log(token);
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      console.log(process.env.FETCH_USER);
+      console.log();
+      //
       if (decoded) {
         // Fetch user data
-        const response = await fetch(`${process.env.FETCH_USER}api/curr`, {
+        const response = await fetch(`${process.env.FETCH_USER}/api/curr`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
-        });
+        })
         const result = await response.json();
-
         if (result) {
           // Attach user data to request object
           req.user = result.user;

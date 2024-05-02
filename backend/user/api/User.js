@@ -37,6 +37,7 @@ export default function UserGateway(app) {
   });
 
   app.get('/api/curr', isAuthenticated, async (req, res) => {
+    console.log('responed');
     return res.json({ user: req.user });
   });
 

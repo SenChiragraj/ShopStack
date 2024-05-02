@@ -10,13 +10,14 @@ export default class UserService {
   }
 
    async getAll(userId) {
-    try {
+     try {
+       console.log(userId);
       let cartItems = await this.repository.getAllCartItems(userId);
       return cartItems
       // else
         // return this.error.Api_Error('Cannot fetch');
     } catch (err) {
-      return this.error.Api_Error('Error', err.message);
+      return this.error.Api_Error('Error', err);
     }
   }
 

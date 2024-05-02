@@ -1,6 +1,6 @@
-import {  useState } from "react"
+import {  useContext, useState } from "react"
 import { NavLink, Navigate, useLocation } from "react-router-dom";
-import { TokenState } from "../context/token/Token";
+import TokenContext from "../context/token/Token";
 
 const Register = () => {
 
@@ -11,7 +11,7 @@ const Register = () => {
   const [error, setError] = useState(null);
   const location = useLocation();
 
-  const { setUser, token, setToken } = TokenState();
+  const { setUser, token, setToken } = useContext(TokenContext);
 
   // const url = process.env.REACT_APP_AUTH_URL;
   // console.log(url);

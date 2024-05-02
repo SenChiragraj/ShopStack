@@ -5,11 +5,11 @@ import Register from "./components/users/Register";
 import Main from "./components/layouts/Main";
 import ErrorPage from "./components/error/ErrorPage";
 import Home from "./components/products/Home";
-import Product from "./components/products/Product";
 import TokenContext from "./components/context/token/Token";
 import { useReducer } from "react";
 import userReducer from "./components/context/user/UserReducer";
 import tokenReducer from "./components/context/token/TokenReducer";
+import ProductPage from "./components/products/ProductPage";
 
 export default function App() {
 
@@ -28,8 +28,8 @@ export default function App() {
             <Route path="register" element={<Register/>} />
 
             <Route element={<Main />}>
-              <Route path="/" element={<Home />} />
-              <Route path="product/:id" element={<Product />} />
+              <Route path="" element={<Home />} />
+              <Route path="product/:id" element={<ProductPage />} />
             </Route>
 
             <Route path="*" element={<ErrorPage/>} />
