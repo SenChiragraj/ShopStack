@@ -23,6 +23,7 @@ export default function CartGateway(app) {
       const { id } = req.params;
       let data;
       const product = await utils.getProductDetails(req.token, id);
+      console.log(product);
       if (product) {
         data = await service.addProduct(req.user._id, product);
       }

@@ -14,6 +14,7 @@ export default class UserService {
    async getAll(userId) {
      try {
        let cartItems = await this.repository.getAllCartItems(userId);
+
        console.log(cartItems);
       return cartItems
       // else

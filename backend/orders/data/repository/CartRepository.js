@@ -45,6 +45,7 @@ export default class CartRepository {
           customerId,
           items: [{ product, unit: 1 }]
         });
+        console.log(newCart);
         return {message : "Item added"};
       } else {
         // If cart exists, push the new product into the items array
