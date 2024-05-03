@@ -58,7 +58,7 @@ const CartDisplay = ({ product = {}, unit, index }) => {
     <div key={index} className="rounded-sm shadow-lg p-2 w-4/5">
       <div className="relative">
         <img className="w-full h-24 object-cover rounded-sm mb-2" src={product.thumbnail} alt="item thumbnail" />
-        <button className="absolute top-0 right-0 bg-black rounded-full px-3 p-1" onClick={e => removeProduct(e, product._id)}>x</button>
+        <button className="absolute top-0 right-0 bg-white text-black font-bold rounded-full w-5 h-5 flex justify-center m-2 items-center align-middle" onClick={e => removeProduct(e, product._id)}>x</button>
       </div>
       <a className="text-sm font-semibold cursor-pointer"  onClick={() => navigate(`/product/${product._id}`)}>{product.title}</a>
       <p className='opacity-85 text-xs'>Brand: {product.brand}</p>

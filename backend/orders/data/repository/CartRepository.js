@@ -38,7 +38,7 @@ export default class CartRepository {
     try {
       // Find the cart corresponding to the given customerId
       const cart = await Cart.findOne({ customerId });
-
+      console.log('repo', product);
       if (!cart) {
         // If cart doesn't exist, create a new cart with the given product
         const newCart = await Cart.create({
@@ -100,7 +100,7 @@ export default class CartRepository {
     try {
       const items = await Cart.findOne({ customerId: userId });
       if (items) return items;
-      return "Empty Cart!!";
+      return [];
     } catch (error) {
       return this.error.Api_Error('Remove Product Error:', error.message)
     }

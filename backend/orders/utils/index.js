@@ -10,8 +10,8 @@ export default class Utils {
           'Authorization': `Bearer ${token}`
         }
       }).then(res => res.json());
-      console.log(response);
-      return response || null;
+      console.log(response.product);
+      return response.product || null;
     } catch (error) {
       throw new Error(error);
     }

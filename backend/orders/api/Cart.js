@@ -18,30 +18,29 @@ export default function CartGateway(app) {
     }
   });
 
-  app.post('/api/addProduct/:id',isAuthenticated,  async (req, res, next) => {
+  app.post('/api/addProduct/:id', isAuthenticated, async (req, res, next) => {
     try {
       const { id } = req.params;
-      let data;
       const product = await utils.getProductDetails(req.token, id);
-      console.log(product);
       if (product) {
-        data = await service.addProduct(req.user._id, product);
+        const data = await service.addProduct(req.user._id, product);
+        return res.json(data);
+      } else {
+        return res.status(404).json({ message: 'Product not found' });
       }
-      return res.json(data);
     } catch (error) {
       next(error);
     }
   });
 
   app.post('/api/removeProduct/:productId', isAuthenticated, async (req, res, next) => {
-    const { productId } = req.params;
     try {
+      const { productId } = req.params;
       const product = await service.removeProduct(req.user._id, productId);
-      res.status(201).json({ product: product })
+      return res.json({ product }); // Return removed product
     } catch (error) {
       next(error);
     }
-    return res.json({ user: req.user });
   });
 
   app.post('/api/update/qty/:productId', isAuthenticated, async (req, res, next) => {

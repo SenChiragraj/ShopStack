@@ -39,14 +39,14 @@ const Cart = () => {
       {error ? (
         <h2 className="text-red-500">{error}</h2>
       ) : (
-        products.length ? (
+        products && products.length ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {products.map((product, index) => (
               <CartDisplay product={product?.product} unit={product?.unit} index={index} key={index} />
             ))}
           </div>
         ) : (
-              <h2 className="text-gray-600">{products.length > 0 ? <SkeletonLoading /> : "No products available"}</h2>
+              <h2 className="text-gray-600">{products && products.length > 0 ? <SkeletonLoading /> : "No products available"}</h2>
         )
       )}
     </div>

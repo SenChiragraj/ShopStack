@@ -26,21 +26,19 @@ export default class UserService {
 
   async addProduct(userId, product) {
     try {
-      // console.log(product.product);
-      const response = await this.repository.addProduct(userId, product.product);
+      const response = await this.repository.addProduct(userId, product);
       return response;
     } catch (error) {
-      return this.error.Api_Error('Error', err.message);
+      throw this.error.Api_Error('Error', error.message);
     }
   }
+
   async removeProduct(userId, productId) {
     try {
-      console.log(userId,  )
       const response = await this.repository.removeProduct(userId, productId);
-      console.log(response);
       return response;
     } catch (error) {
-      return this.error.Api_Error('Error', err.message);
+      throw this.error.Api_Error('Error', error.message);
     }
   }
   async manageProduct(userId, productId, unit) {
