@@ -1,18 +1,20 @@
 import CartRepository from "../data/repository/CartRepository.js";
 import ErrorClass from "../errors/api-handler.js";
+import Utils from "../utils/index.js";
 // import generateToken from '../middleware/generateToken.js'
 
 export default class UserService {
 
   constructor() {
     this.repository = new CartRepository();
+    this.util = new Utils();
     this.error = new ErrorClass();
   }
 
    async getAll(userId) {
      try {
-       console.log(userId);
-      let cartItems = await this.repository.getAllCartItems(userId);
+       let cartItems = await this.repository.getAllCartItems(userId);
+       console.log(cartItems);
       return cartItems
       // else
         // return this.error.Api_Error('Cannot fetch');

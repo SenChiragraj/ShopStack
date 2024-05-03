@@ -10,6 +10,10 @@ import { useReducer } from "react";
 import userReducer from "./components/context/user/UserReducer";
 import tokenReducer from "./components/context/token/TokenReducer";
 import ProductPage from "./components/products/ProductPage";
+import Order from "./components/orders/Order";
+import Cart from "./components/orders/Cart";
+import Profile from "./components/users/Profile";
+import OrderAll from "./components/orders/OrderAll";
 
 export default function App() {
 
@@ -30,6 +34,10 @@ export default function App() {
             <Route element={<Main />}>
               <Route path="" element={<Home />} />
               <Route path="product/:id" element={<ProductPage />} />
+              <Route path="cart" element={<Cart />} />
+              <Route path="order" element={<Order />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="oral" element={<OrderAll />} />
             </Route>
 
             <Route path="*" element={<ErrorPage/>} />

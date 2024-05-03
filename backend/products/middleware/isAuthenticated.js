@@ -11,7 +11,7 @@ const isAuthenticated = async (req, res, next) => {
       //
       if (decoded) {
         // Fetch user data
-        const response = await fetch(`${process.env.FETCH_USER}/api/curr`, {
+        const response = await fetch(`http://user:8001/api/curr`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

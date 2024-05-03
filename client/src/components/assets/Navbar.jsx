@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import ButtonSection from "./ButtonSection";
 import SearchBar from "./SearchBar";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [search, setSearch] = useState("");
@@ -9,7 +10,7 @@ const Navbar = () => {
   return (
     <div className="flex items-center justify-between h-14 bg-blue-200 px-4">
       {/* Logo */}
-      <h1 className="font-medium text-xl">Shatack</h1>
+      <h1 className="font-medium text-xl"><NavLink to={'/'}>Shatack</NavLink></h1>
 
       {/* Search Bar */}
       <div className="flex items-center flex-grow mx-4">

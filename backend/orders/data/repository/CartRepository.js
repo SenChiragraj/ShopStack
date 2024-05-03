@@ -45,7 +45,7 @@ export default class CartRepository {
           customerId,
           items: [{ product, unit: 1 }]
         });
-        return newCart.items;
+        return {message : "Item added"};
       } else {
         // If cart exists, push the new product into the items array
         const existingItemIndex = cart.items.findIndex(item => item.product._id === product._id);
@@ -58,7 +58,7 @@ export default class CartRepository {
         }
         // Save the updated cart
         await cart.save();
-        return cart.items;
+        return {message : "Item added"};
       }
     } catch (error) {
       // Handle errors appropriately
@@ -97,11 +97,9 @@ export default class CartRepository {
 
   async getAllCartItems(userId) {
     try {
-      console.log(userId);
       const items = await Cart.findOne({ customerId: userId });
       if (items) return items;
       return "Empty Cart!!";
-      return items;
     } catch (error) {
       return this.error.Api_Error('Remove Product Error:', error.message)
     }

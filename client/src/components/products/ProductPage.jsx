@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import ErrorPage from '../error/ErrorPage';
-import { GetData } from '../assets/axios';
+import { GetData, PostData } from '../assets/axios';
+import { useToast } from '@chakra-ui/react';
 
 const ProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [openImg, setOpenImg] = useState(null);
+  const [error, setError] = useState(null);
+  const toast = useToast();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,21 +17,35 @@ const ProductPage = () => {
         const res = await GetData(`/product/api/${id}`);
         setProduct(res.data.product);
       } catch (error) {
-        // Handle error
-        return <ErrorPage message= {error.message || 'Error in finding product details'} />
-
+        setError(error.message || 'Error in finding product details');
       }
     };
 
     fetchData();
   }, [id]);
 
-  function handleCart(id) {
+  const handleCart = async (productId) => {
     try {
-      const res =
+      await PostData(`order/api/addProduct/${productId}`);
+      toast({
+        title: 'Product added to cart',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
     } catch (error) {
-      return <ErrorPage message= {error.message || 'Unable to add product to cart. Try again!!'} />
+      toast({
+        title: 'Error',
+        description: 'Something went wrong while adding the product to cart',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
     }
+  };
+
+  if (error) {
+    return <ErrorPage message={error} />;
   }
 
   return (
@@ -68,7 +85,9 @@ const ProductPage = () => {
           <p className='text-xs'><span className=''>M.R.P :</span><strike className=''>₹{product.price + 2000}</strike></p>
         </div>
         <div className='flex gap-3 lg:h-8'>
-          <button className='bg-orange-500 text-white w-auto px-4 rounded-full' onClick={() => handleCart(product._id)}>Add to cart</button>
+          <button className='bg-orange-500 text-white w-auto px-4 rounded-full'
+            onClick={() => { handleCart(product._id) }}
+          >Add to cart</button>
           <button className='bg-orange-500 text-white w-auto px-4 rounded-full' onClick={() => { handleCart(product._id);  Navigate('/cart')}}>Order now</button>
         </div>
       </div>

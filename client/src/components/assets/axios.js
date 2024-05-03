@@ -6,10 +6,11 @@ api.defaults.baseURL = "http://localhost:8000/";
 
 const SetHeader = () => {
   // const { token } = useContext(TokenContext);
-  const token = localStorage.getItem('authToken');
+  const token =  JSON.parse(localStorage.getItem("authToken"));
+  console.log(token.user);
   if (token.token) {
       api.defaults.headers.common['Authorization'] = `Bearer ${token.token}`;
-    }
+  }
 }
 
 export const GetData = async (endPoint, options) => {
